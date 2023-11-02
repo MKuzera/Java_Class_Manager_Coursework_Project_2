@@ -1,4 +1,5 @@
 import java.util.Date;
+import java.util.Objects;
 
 public class Teacher implements Comparable<Teacher> {
     private String firstName;
@@ -34,12 +35,37 @@ public class Teacher implements Comparable<Teacher> {
                 '}';
     }
 
+    public Date getYearOfBirth() {
+        return yearOfBirth;
+    }
+
+    public TeacherCondition getTeacherCondition() {
+        return teacherCondition;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
     public String getLastName() {
         return lastName;
     }
 
     public void setTeacherCondition(TeacherCondition teacherCondition) {
         this.teacherCondition = teacherCondition;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Teacher teacher = (Teacher) o;
+        return Objects.equals(firstName, teacher.firstName) && Objects.equals(lastName, teacher.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, yearOfBirth);
     }
 
     @Override
